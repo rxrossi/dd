@@ -1,4 +1,5 @@
 node_modules
 dist
+dd.db
 .DS_Store
 coverage
