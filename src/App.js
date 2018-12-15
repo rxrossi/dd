@@ -1,9 +1,13 @@
 import React from "react"
 import { hot } from "react-hot-loader"
-import db from "./database"
+import List from "./views/professionals/List"
 
 function App() {
-  return <div>Hi</div>
+  return (
+    <div>
+      <List />
+    </div>
+  )
 }
 
 export default hot(module)(App)

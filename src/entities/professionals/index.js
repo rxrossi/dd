@@ -1,12 +1,15 @@
-import sequelize from "../../database"
-import Sequelize from "sequelize"
+import sequelize, { Sequelize } from "../../database"
 
-export default async () => {
+async function setupModel() {
   const Professional = sequelize.define("professional", {
     name: {
       type: Sequelize.STRING
     }
   })
 
-  return Professional.sync({ force: true })
+  await Professional.sync()
+
+  return Professional
 }
+
+export default setupModel
