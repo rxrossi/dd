@@ -1,28 +1,23 @@
 import React from "react"
-import setupModel from "../../entities/professionals"
+import db from "../../models"
 import createCrud from "../createCrud"
+import Form from "./Form"
 
 const List = ({ entities }) => {
   return (
-    <ul>
-      {entities.map(({ id, name }) => (
-        <li key={id}>{name} </li>
-      ))}
-    </ul>
+    <div>
+      List
+      <ul>
+        {entities.map(({ id, name }) => (
+          <li key={id}>{name} </li>
+        ))}
+      </ul>
+    </div>
   )
 }
 
 const Create = ({ add }) => {
-  return (
-    <form
-      onSubmit={e => {
-        e.preventDefault()
-        add({ name: "Bruna" })
-      }}
-    >
-      <button type="submit">Add</button>
-    </form>
-  )
+  return <Form onSubmit={add} />
 }
 
-export default createCrud({ List, Create, setupModel })
+export default createCrud({ List, Create, model: db.Professional })

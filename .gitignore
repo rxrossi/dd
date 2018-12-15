@@ -1,5 +1,8 @@
 node_modules
 dist
-dd.db
 .DS_Store
 coverage
+database_dev.db
+database_production.db
+database_dev.sqlite
+database_production.sqlite

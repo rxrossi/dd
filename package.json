@@ -42,8 +42,11 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.2.0",
+    "final-form": "^4.11.0",
+    "fs": "0.0.1-security",
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
+    "react-final-form": "^4.0.2",
     "react-hot-loader": "^4.3.11",
     "sequelize": "^4.42.0",
     "sqlite3": "^4.0.4"
