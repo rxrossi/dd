@@ -1,11 +1,11 @@
 import React from "react"
 import { hot } from "react-hot-loader"
-import List from "./views/professionals/List"
+import Professionals from "./views/professionals"
 
 function App() {
   return (
     <div>
-      <List />
+      <Professionals />
     </div>
   )
 }
