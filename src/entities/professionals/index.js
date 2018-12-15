@@ -1,16 +1,12 @@
-export default db => {
-  return {
-    getAll() {
-      return new Promise((resolve, reject) => {
-        db.all("SELECT * FROM professional", (err, rows) => {
-          if (err) {
-            console.error(err)
-            reject()
-          } else {
-            resolve(rows)
-          }
-        })
-      })
+import sequelize from "../../database"
+import Sequelize from "sequelize"
+
+export default async () => {
+  const Professional = sequelize.define("professional", {
+    name: {
+      type: Sequelize.STRING
     }
-  }
+  })
+
+  return Professional.sync({ force: true })
 }
