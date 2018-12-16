@@ -1,6 +1,7 @@
 import React from "react"
 import db from "./models"
-import Professionals from "./views/professionals"
+import Professionals from "./views/Professionals"
+import Sales from "./views/Sales"
 import { hot } from "react-hot-loader"
 
 class App extends React.Component {
@@ -19,7 +20,15 @@ class App extends React.Component {
       <div>Starting database</div>
     ) : (
       <div>
-        <Professionals />
+        <div>
+          <h1>Professionals</h1>
+          <Professionals />
+        </div>
+        <hr />
+        <div>
+          <h1>Sales</h1>
+          <Sales />
+        </div>
       </div>
     )
   }
