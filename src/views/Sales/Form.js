@@ -6,15 +6,15 @@ import CommonButtons from "../../commons/CommonFormButtons"
 
 export default ({ onSubmit, parseOutput }) => (
   <Form
-    onSubmit={(values, form) => {
+    onSubmit={values => {
       onSubmit(parseOutput(values))
-      form.reset()
     }}
     initialValues={{}}
     render={({ handleSubmit, form, submitting, pristine }) => (
       <form onSubmit={handleSubmit}>
         <EntitySelect name="professional" entityName="Professional" />
         <Field type="number" label="Valor" name="value" />
+        <Field type="text" label="Nome do serviço" name="name" />
         <CommonButtons
           form={form}
           submitting={submitting}

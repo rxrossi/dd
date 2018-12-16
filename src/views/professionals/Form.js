@@ -5,10 +5,7 @@ import CommonButtons from "../../commons/CommonFormButtons"
 
 export default ({ onSubmit }) => (
   <Form
-    onSubmit={(values, form) => {
-      onSubmit(values)
-      form.reset()
-    }}
+    onSubmit={onSubmit}
     initialValues={{}}
     render={({ handleSubmit, form, submitting, pristine }) => (
       <form onSubmit={handleSubmit}>

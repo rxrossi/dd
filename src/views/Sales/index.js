@@ -3,14 +3,19 @@ import db from "../../models"
 import createCrud from "../createCrud"
 import Form from "./Form"
 
-const List = ({ entities }) => {
+const List = ({ entities, onDeleteClick }) => {
   return (
     <div>
       List
       <ul>
-        {entities.map(({ id, value, professional }) => (
+        {entities.map(({ id, value, name = "", professional }) => (
           <li key={id}>
-            {professional && professional.name} {value}
+            {name} {professional && professional.name} {value}{" "}
+            <button
+              onClick={() => onDeleteClick({ id, name: `${name} ${value}` })}
+            >
+              Remove
+            </button>
           </li>
         ))}
       </ul>
