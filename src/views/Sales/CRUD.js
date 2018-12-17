@@ -13,7 +13,7 @@ const List = ({ entities, onDeleteClick, onUpdateClick }) => {
           <button
             onClick={() => onDeleteClick({ id, name: `${name} ${value}` })}
           >
-            Remove
+            Excluir
           </button>
         </li>
       ))}
