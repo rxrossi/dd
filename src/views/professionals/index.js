@@ -5,18 +5,15 @@ import Form from "./Form"
 
 const List = ({ entities, onDeleteClick, onUpdateClick }) => {
   return (
-    <div>
-      List
-      <ul>
-        {entities.map(({ id, name }) => (
-          <li key={id}>
-            {name}{" "}
-            <button onClick={() => onUpdateClick({ id, name })}>Editar</button>
-            <button onClick={() => onDeleteClick({ id, name })}>Excluir</button>
-          </li>
-        ))}
-      </ul>
-    </div>
+    <ul>
+      {entities.map(({ id, name }) => (
+        <li key={id}>
+          {name}{" "}
+          <button onClick={() => onUpdateClick({ id, name })}>Editar</button>
+          <button onClick={() => onDeleteClick({ id, name })}>Excluir</button>
+        </li>
+      ))}
+    </ul>
   )
 }
 
