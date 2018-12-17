@@ -24,8 +24,8 @@ const Create = ({ add }) => {
   return <Form onSubmit={add} />
 }
 
-const Update = ({ update, entity }) => {
-  return <Form onSubmit={update} entity={entity} />
+const Update = ({ update, entity, onCancel }) => {
+  return <Form onSubmit={update} entity={entity} onCancel={onCancel} />
 }
 
 export default createCrud({ List, Create, Update, model: db.Professional })

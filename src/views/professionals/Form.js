@@ -3,7 +3,7 @@ import { Form } from "react-final-form"
 import Field from "../../commons/Field"
 import CommonButtons from "../../commons/CommonFormButtons"
 
-export default ({ onSubmit, entity }) => {
+export default ({ onSubmit, entity, onCancel }) => {
   return (
     <Form
       onSubmit={onSubmit}
@@ -12,6 +12,7 @@ export default ({ onSubmit, entity }) => {
         <form onSubmit={handleSubmit}>
           <Field name="name" type="text" label="Nome" />
           <CommonButtons
+            onCancel={onCancel}
             submitting={submitting}
             pristine={pristine}
             form={form}

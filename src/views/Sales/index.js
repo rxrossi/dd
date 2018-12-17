@@ -41,8 +41,15 @@ const Create = ({ add }) => {
   return <Form onSubmit={add} parseOutput={parseOutput} />
 }
 
-const Update = ({ update, entity }) => {
-  return <Form onSubmit={update} entity={entity} parseInput={parseInput} />
+const Update = ({ update, entity, onCancel }) => {
+  return (
+    <Form
+      onSubmit={update}
+      entity={entity}
+      parseInput={parseInput}
+      onCancel={onCancel}
+    />
+  )
 }
 
 export default createCrud({

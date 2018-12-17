@@ -8,7 +8,8 @@ export default ({
   onSubmit,
   parseOutput = f => f,
   parseInput = f => f,
-  entity
+  entity,
+  onCancel
 }) => (
   <Form
     onSubmit={values => {
@@ -21,6 +22,7 @@ export default ({
         <Field type="number" label="Valor" name="value" />
         <Field type="text" label="Nome do serviço" name="name" />
         <CommonButtons
+          onCancel={onCancel}
           form={form}
           submitting={submitting}
           pristine={pristine}

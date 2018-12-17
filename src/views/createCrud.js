@@ -9,7 +9,7 @@ const VIEW_TYPES = {
 
 const DefaultDelete = ({ selectedEntityName, onConfirm, onCancel }) => (
   <div>
-    Removendo {selectedEntityName}
+    Deseja remover {selectedEntityName} ?
     <button onClick={onConfirm}>Remover</button>
     <button onClick={onCancel}>Cancelar</button>
   </div>
@@ -159,6 +159,7 @@ export default ({
         [VIEW_TYPES.UPDATE]: selectedId ? (
           <Update
             update={this.updateEntity}
+            onCancel={() => this.setView(VIEW_TYPES.LIST)}
             entity={entities
               .find(({ id }) => id === selectedId)
               .get({ plain: true })}
