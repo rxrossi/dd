@@ -3,7 +3,8 @@ export default (sequelize, DataTypes) => {
     name: {
       type: DataTypes.STRING,
       unique: true
-    }
+    },
+    percentage: DataTypes.INTEGER
   })
 
   Professional.associate = models => {

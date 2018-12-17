@@ -11,6 +11,11 @@ export default ({ onSubmit, entity, onCancel }) => {
       render={({ handleSubmit, form, submitting, pristine }) => (
         <form onSubmit={handleSubmit}>
           <Field name="name" type="text" label="Nome" />
+          <Field
+            name="percentage"
+            type="number"
+            label="Porcentagem de comissão"
+          />
           <CommonButtons
             onCancel={onCancel}
             submitting={submitting}

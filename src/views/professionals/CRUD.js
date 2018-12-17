@@ -2,6 +2,7 @@ import React from "react"
 import db from "../../models"
 import createCrud from "../createCrud"
 import Form from "./Form"
+import { RouterConsumer } from "../../Router"
 
 const List = ({ entities, onDeleteClick, onUpdateClick }) => {
   return (
@@ -9,6 +10,19 @@ const List = ({ entities, onDeleteClick, onUpdateClick }) => {
       {entities.map(({ id, name }) => (
         <li key={id}>
           {name}{" "}
+          <RouterConsumer>
+            {({ setView, VIEW_TYPES }) => (
+              <button
+                onClick={() =>
+                  setView(VIEW_TYPES.PROFESSIONAL_SALES, {
+                    professionalId: id
+                  })
+                }
+              >
+                Ver vendas
+              </button>
+            )}
+          </RouterConsumer>
           <button onClick={() => onUpdateClick({ id, name })}>Editar</button>
           <button onClick={() => onDeleteClick({ id, name })}>Excluir</button>
         </li>
