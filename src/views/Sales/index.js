@@ -3,7 +3,7 @@ import db from "../../models"
 import createCrud from "../createCrud"
 import Form from "./Form"
 
-const List = ({ entities, onDeleteClick }) => {
+const List = ({ entities, onDeleteClick, onUpdateClick }) => {
   return (
     <div>
       List
@@ -11,6 +11,7 @@ const List = ({ entities, onDeleteClick }) => {
         {entities.map(({ id, value, name = "", professional }) => (
           <li key={id}>
             {name} {professional && professional.name} {value}{" "}
+            <button onClick={() => onUpdateClick({ id, name })}>Editar</button>
             <button
               onClick={() => onDeleteClick({ id, name: `${name} ${value}` })}
             >
@@ -29,14 +30,25 @@ function parseOutput({ professional, ...rest }) {
     professionalId: Number(professional)
   }
 }
+function parseInput({ professionalId, ...rest }) {
+  return {
+    ...rest,
+    professional: professionalId
+  }
+}
 
 const Create = ({ add }) => {
   return <Form onSubmit={add} parseOutput={parseOutput} />
 }
 
+const Update = ({ update, entity }) => {
+  return <Form onSubmit={update} entity={entity} parseInput={parseInput} />
+}
+
 export default createCrud({
   List,
   Create,
+  Update,
   model: db.Sale,
   includes: {
     include: db.Professional

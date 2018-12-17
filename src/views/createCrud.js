@@ -2,6 +2,7 @@ import React from "react"
 
 const VIEW_TYPES = {
   CREATE: "CREATE",
+  UPDATE: "UPDATE",
   LIST: "LIST",
   DELETE: "DELETE"
 }
@@ -17,6 +18,7 @@ const DefaultDelete = ({ selectedEntityName, onConfirm, onCancel }) => (
 export default ({
   List,
   Create,
+  Update,
   Delete = DefaultDelete,
   model,
   includes = {}
@@ -30,9 +32,12 @@ export default ({
     }
 
     componentDidMount() {
-      model
-        .findAll(includes)
-        .then(entities => this.setState({ entities, loading: false }))
+      model.findAll(includes).then(entities =>
+        this.setState({
+          entities,
+          loading: false
+        })
+      )
     }
 
     addEntity = entity => {
@@ -48,8 +53,10 @@ export default ({
         )
         .then(entity => {
           this.setState(state => ({
-            entities: [...state.entities, entity.get({ plain: true })],
-            view: VIEW_TYPES.LIST
+            entities: [...state.entities, entity],
+            view: VIEW_TYPES.LIST,
+            selectedId: null,
+            selectedEntityName: null
           }))
         })
     }
@@ -69,14 +76,47 @@ export default ({
             )
             return {
               entities: filteredEntities,
-              view: VIEW_TYPES.LIST
+              view: VIEW_TYPES.LIST,
+              selectedId: null,
+              selectedEntityName: null
             }
           })
         })
     }
 
-    setView = view => {
-      this.setState({ view })
+    updateEntity = entity => {
+      model
+        .find({
+          where: {
+            id: entity.id
+          }
+        })
+        .then(model => model.update(entity))
+        .then(entity =>
+          model.find({
+            where: {
+              id: entity.id
+            },
+            ...includes
+          })
+        )
+        .then(updatedEntity => {
+          this.setState(state => {
+            const updateEntitiesList = state.entities.map(entity => {
+              return entity.id === updatedEntity.id ? updatedEntity : entity
+            })
+            return {
+              entities: updateEntitiesList,
+              view: VIEW_TYPES.LIST,
+              selectedId: null,
+              selectedEntityName: null
+            }
+          })
+        })
+    }
+
+    setView = (view, selectedId = null, selectedEntityName = null) => {
+      this.setState({ view, selectedId, selectedEntityName })
     }
 
     render() {
@@ -101,6 +141,12 @@ export default ({
                 selectedEntityName: name
               })
             }
+            onUpdateClick={({ id }) =>
+              this.setState({
+                view: VIEW_TYPES.UPDATE,
+                selectedId: id
+              })
+            }
           />
         ),
         [VIEW_TYPES.DELETE]: (
@@ -109,7 +155,15 @@ export default ({
             onCancel={() => this.setView(VIEW_TYPES.LIST)}
             selectedEntityName={selectedEntityName}
           />
-        )
+        ),
+        [VIEW_TYPES.UPDATE]: selectedId ? (
+          <Update
+            update={this.updateEntity}
+            entity={entities
+              .find(({ id }) => id === selectedId)
+              .get({ plain: true })}
+          />
+        ) : null
       }
 
       return (
