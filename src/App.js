@@ -1,8 +1,7 @@
 import React from "react"
 import db from "./models"
-import Professionals from "./views/Professionals"
-import Sales from "./views/Sales"
 import { hot } from "react-hot-loader"
+import Router from "./Router"
 
 class App extends React.Component {
   state = {
@@ -16,21 +15,7 @@ class App extends React.Component {
   }
 
   render() {
-    return this.state.startingDb ? (
-      <div>Starting database</div>
-    ) : (
-      <div>
-        <div>
-          <h1>Professionals</h1>
-          <Professionals />
-        </div>
-        <hr />
-        <div>
-          <h1>Sales</h1>
-          <Sales />
-        </div>
-      </div>
-    )
+    return this.state.startingDb ? <div>Starting database</div> : <Router />
   }
 }
 
