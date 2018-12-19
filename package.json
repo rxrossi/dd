@@ -9,7 +9,9 @@
     "dev": "concurrently \"npm run webserver\" \"wait-on http://localhost:9000 && npm run electron\"",
     "build": "webpack --config webpack.config.js",
     "postinstall": "electron-builder install-app-deps",
-    "test": "jest"
+    "test": "jest",
+    "makemigration": "makemigration",
+    "runmigration": "runmigration"
   },
   "keywords": [],
   "author": "",
@@ -49,6 +51,7 @@
     "react-final-form": "^4.0.2",
     "react-hot-loader": "^4.3.11",
     "sequelize": "^4.42.0",
+    "sequelize-auto-migrations": "^1.0.2",
     "sqlite3": "^4.0.4"
   }
 }

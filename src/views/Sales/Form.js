@@ -11,23 +11,24 @@ export default ({
   entity,
   onCancel
 }) => (
-  <Form
-    onSubmit={values => {
-      onSubmit(parseOutput(values))
-    }}
-    initialValues={parseInput(entity)}
-    render={({ handleSubmit, form, submitting, pristine }) => (
-      <form onSubmit={handleSubmit}>
-        <EntitySelect name="professional" entityName="Professional" />
-        <Field type="number" label="Valor" name="value" />
-        <Field type="text" label="Nome do serviço" name="name" />
-        <CommonButtons
-          onCancel={onCancel}
-          form={form}
-          submitting={submitting}
-          pristine={pristine}
-        />
-      </form>
-    )}
-  />
-)
+    <Form
+      onSubmit={values => {
+        onSubmit(parseOutput(values))
+      }}
+      initialValues={parseInput(entity)}
+      render={({ handleSubmit, form, submitting, pristine }) => (
+        <form onSubmit={handleSubmit}>
+          <EntitySelect name="professional" entityName="Professional" />
+          <Field type="number" label="Valor" name="value" />
+          <Field type="date" label="Data" name="date" />
+          <Field type="text" label="Nome do serviço" name="name" />
+          <CommonButtons
+            onCancel={onCancel}
+            form={form}
+            submitting={submitting}
+            pristine={pristine}
+          />
+        </form>
+      )}
+    />
+  )

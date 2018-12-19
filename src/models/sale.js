@@ -1,7 +1,8 @@
 export default (sequelize, DataTypes) => {
   const Sale = sequelize.define("sale", {
     value: DataTypes.INTEGER,
-    name: DataTypes.STRING
+    name: DataTypes.STRING,
+    date: DataTypes.DATE
   })
 
   Sale.associate = models => {
