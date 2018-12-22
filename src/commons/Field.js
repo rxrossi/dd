@@ -1,11 +1,13 @@
-import React from "react"
-import { Field } from "react-final-form"
+import React from 'react'
+import { Field as FinalFormField } from 'react-final-form'
 
-export default ({ label, ...rest }) => {
+function Field({ label, ...rest }) {
   return (
     <div>
       <label>{label}</label>
-      <Field component="input" {...rest} />
+      <FinalFormField component="input" {...rest} />
     </div>
   )
 }
+
+export default Field

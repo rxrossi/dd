@@ -1,10 +1,10 @@
 export default (sequelize, DataTypes) => {
-  const Professional = sequelize.define("professional", {
+  const Professional = sequelize.define('professional', {
     name: {
       type: DataTypes.STRING,
-      unique: true
+      unique: true,
     },
-    percentage: DataTypes.INTEGER
+    percentage: DataTypes.INTEGER,
   })
 
   Professional.associate = models => {

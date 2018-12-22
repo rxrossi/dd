@@ -1,35 +1,32 @@
-'use strict';
+'use strict'
 
 module.exports = {
   up: (queryInterface, DataTypes) => {
-    return queryInterface.createTable(
-      'professionals',
-      {
+    return queryInterface
+      .createTable('professionals', {
         id: {
           type: DataTypes.INTEGER,
           primaryKey: true,
-          autoIncrement: true
+          autoIncrement: true,
         },
         name: {
           type: DataTypes.STRING,
-          unique: true
+          unique: true,
         },
         percentage: DataTypes.INTEGER,
         createdAt: {
-          type: DataTypes.DATE
+          type: DataTypes.DATE,
         },
         updatedAt: {
-          type: DataTypes.DATE
+          type: DataTypes.DATE,
         },
-      }
-    ).then(() => {
-      return queryInterface.createTable(
-        'sales',
-        {
+      })
+      .then(() => {
+        return queryInterface.createTable('sales', {
           id: {
             type: DataTypes.INTEGER,
             primaryKey: true,
-            autoIncrement: true
+            autoIncrement: true,
           },
           value: DataTypes.INTEGER,
           name: DataTypes.STRING,
@@ -38,25 +35,24 @@ module.exports = {
             type: DataTypes.INTEGER,
             references: {
               model: 'professionals',
-              key: 'id'
+              key: 'id',
             },
             onUpdate: 'restrict',
-            onDelete: 'restrict'
+            onDelete: 'restrict',
           },
           createdAt: {
-            type: DataTypes.DATE
+            type: DataTypes.DATE,
           },
           updatedAt: {
-            type: DataTypes.DATE
+            type: DataTypes.DATE,
           },
-        },
-      )
-    })
+        })
+      })
   },
 
-  down: (queryInterface, DataTypes) => {
+  down: queryInterface => {
     return queryInterface.dropTable('professionals').then(() => {
       return queryInterface.dropTable('sales')
     })
-  }
-};
+  },
+}

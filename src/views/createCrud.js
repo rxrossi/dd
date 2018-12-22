@@ -1,10 +1,10 @@
-import React from "react"
+import React from 'react'
 
 const VIEW_TYPES = {
-  CREATE: "CREATE",
-  UPDATE: "UPDATE",
-  LIST: "LIST",
-  DELETE: "DELETE"
+  CREATE: 'CREATE',
+  UPDATE: 'UPDATE',
+  LIST: 'LIST',
+  DELETE: 'DELETE',
 }
 
 const DefaultDelete = ({ selectedEntityName, onConfirm, onCancel }) => (
@@ -21,21 +21,21 @@ export default ({
   Update,
   Delete = DefaultDelete,
   model,
-  includes = {}
+  includes = {},
 }) => {
   return class withCrud extends React.Component {
     state = {
       entities: [],
       loading: true,
       view: VIEW_TYPES.LIST,
-      selectedId: null
+      selectedId: null,
     }
 
     componentDidMount() {
       model.findAll(includes).then(entities =>
         this.setState({
           entities,
-          loading: false
+          loading: false,
         })
       )
     }
@@ -46,9 +46,9 @@ export default ({
         .then(entity =>
           model.find({
             where: {
-              id: entity.id
+              id: entity.id,
             },
-            ...includes
+            ...includes,
           })
         )
         .then(entity => {
@@ -56,7 +56,7 @@ export default ({
             entities: [...state.entities, entity],
             view: VIEW_TYPES.LIST,
             selectedId: null,
-            selectedEntityName: null
+            selectedEntityName: null,
           }))
         })
     }
@@ -65,8 +65,8 @@ export default ({
       model
         .find({
           where: {
-            id
-          }
+            id,
+          },
         })
         .then(entity => entity.destroy())
         .then(() => {
@@ -78,7 +78,7 @@ export default ({
               entities: filteredEntities,
               view: VIEW_TYPES.LIST,
               selectedId: null,
-              selectedEntityName: null
+              selectedEntityName: null,
             }
           })
         })
@@ -88,16 +88,16 @@ export default ({
       model
         .find({
           where: {
-            id: entity.id
-          }
+            id: entity.id,
+          },
         })
         .then(model => model.update(entity))
         .then(entity =>
           model.find({
             where: {
-              id: entity.id
+              id: entity.id,
             },
-            ...includes
+            ...includes,
           })
         )
         .then(updatedEntity => {
@@ -109,7 +109,7 @@ export default ({
               entities: updateEntitiesList,
               view: VIEW_TYPES.LIST,
               selectedId: null,
-              selectedEntityName: null
+              selectedEntityName: null,
             }
           })
         })
@@ -125,7 +125,7 @@ export default ({
         loading,
         view,
         selectedId,
-        selectedEntityName
+        selectedEntityName,
       } = this.state
 
       const views = {
@@ -138,13 +138,13 @@ export default ({
               this.setState({
                 view: VIEW_TYPES.DELETE,
                 selectedId: id,
-                selectedEntityName: name
+                selectedEntityName: name,
               })
             }
             onUpdateClick={({ id }) =>
               this.setState({
                 view: VIEW_TYPES.UPDATE,
-                selectedId: id
+                selectedId: id,
               })
             }
           />
@@ -164,7 +164,7 @@ export default ({
               .find(({ id }) => id === selectedId)
               .get({ plain: true })}
           />
-        ) : null
+        ) : null,
       }
 
       return (

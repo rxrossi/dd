@@ -1,9 +1,9 @@
-import React from "react"
-import { Form } from "react-final-form"
-import Field from "../../commons/Field"
-import CommonButtons from "../../commons/CommonFormButtons"
+import React from 'react'
+import { Form } from 'react-final-form'
+import Field from '../../commons/Field'
+import CommonButtons from '../../commons/CommonFormButtons'
 
-export default ({ onSubmit, entity, onCancel }) => {
+function ProfessionalsForm({ onSubmit, entity, onCancel }) {
   return (
     <Form
       onSubmit={onSubmit}
@@ -27,3 +27,5 @@ export default ({ onSubmit, entity, onCancel }) => {
     />
   )
 }
+
+export default ProfessionalsForm

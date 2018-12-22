@@ -1,14 +1,14 @@
-import React from "react"
-import db from "../../models"
-import createCrud from "../createCrud"
-import Form from "./Form"
+import React from 'react'
+import db from '../../models'
+import createCrud from '../createCrud'
+import Form from './Form'
 
 const List = ({ entities, onDeleteClick, onUpdateClick }) => {
   return (
     <ul>
-      {entities.map(({ id, value, name = "", professional }) => (
+      {entities.map(({ id, value, name = '', professional }) => (
         <li key={id}>
-          {name} {professional && professional.name} {value}{" "}
+          {name} {professional && professional.name} {value}{' '}
           <button onClick={() => onUpdateClick({ id, name })}>Editar</button>
           <button
             onClick={() => onDeleteClick({ id, name: `${name} ${value}` })}
@@ -24,13 +24,14 @@ const List = ({ entities, onDeleteClick, onUpdateClick }) => {
 function parseOutput({ professional, ...rest }) {
   return {
     ...rest,
-    professionalId: Number(professional)
+    professionalId: Number(professional),
   }
 }
+
 function parseInput({ professionalId, ...rest }) {
   return {
     ...rest,
-    professional: professionalId
+    professional: professionalId,
   }
 }
 
@@ -55,6 +56,6 @@ export default createCrud({
   Update,
   model: db.Sale,
   includes: {
-    include: db.Professional
-  }
+    include: db.Professional,
+  },
 })

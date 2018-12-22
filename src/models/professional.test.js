@@ -1,26 +1,26 @@
-import db from "."
+import db from '.'
 const { sequelize, Professional, Sale } = db
 
-describe("Professional model", () => {
+describe('Professional model', () => {
   beforeEach(() => sequelize.sync({ force: true }))
-  describe("findAll", () => {
-    describe("empty database", () => {
-      it("returns empty array", async () => {
+  describe('findAll', () => {
+    describe('empty database', () => {
+      it('returns empty array', async () => {
         expect(await Professional.findAll()).toEqual([])
       })
     })
 
-    describe("with a professional", () => {
-      const professional = { name: "Ana" }
+    describe('with a professional', () => {
+      const professional = { name: 'Ana' }
       beforeEach(() => Professional.create(professional))
 
-      it("returns all professionals in db", async () => {
+      it('returns all professionals in db', async () => {
         expect(await Professional.findAll()).toMatchObject([professional])
       })
     })
 
-    describe("with a professional with a sale", () => {
-      const professional = { name: "Ana" }
+    describe('with a professional with a sale', () => {
+      const professional = { name: 'Ana' }
       const sale = { value: 30 }
 
       beforeEach(() =>
@@ -29,16 +29,16 @@ describe("Professional model", () => {
         })
       )
 
-      it("returns all professionals in db with the sale", async () => {
+      it('returns all professionals in db with the sale', async () => {
         expect(
           await Professional.findAll({
-            include: Sale
+            include: Sale,
           })
         ).toMatchObject([
           {
             ...professional,
-            sales: [{ value: 30, id: expect.anything() }]
-          }
+            sales: [{ value: 30, id: expect.anything() }],
+          },
         ])
       })
     })

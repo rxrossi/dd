@@ -1,10 +1,10 @@
-import React from "react"
-import { Field } from "react-final-form"
-import db from "../models"
+import React from 'react'
+import { Field } from 'react-final-form'
+import db from '../models'
 
 class EntitySelect extends React.Component {
   state = {
-    entities: []
+    entities: [],
   }
 
   componentDidMount() {

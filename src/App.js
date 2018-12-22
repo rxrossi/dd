@@ -1,11 +1,11 @@
-import React from "react"
-import db from "./models"
-import { hot } from "react-hot-loader"
-import Router from "./Router"
+import React from 'react'
+import db from './models'
+import { hot } from 'react-hot-loader'
+import Router from './Router'
 
 class App extends React.Component {
   state = {
-    startingDb: true
+    startingDb: true,
   }
 
   componentDidMount() {

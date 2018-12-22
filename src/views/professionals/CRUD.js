@@ -1,22 +1,20 @@
-import React from "react"
-import db from "../../models"
-import createCrud from "../createCrud"
-import Form from "./Form"
-import { RouterConsumer } from "../../Router"
+import React from 'react'
+import db from '../../models'
+import createCrud from '../createCrud'
+import Form from './Form'
+import { RouterConsumer } from '../../Router'
 
 const List = ({ entities, onDeleteClick, onUpdateClick }) => {
   return (
     <ul>
       {entities.map(({ id, name }) => (
         <li key={id}>
-          {name}{" "}
+          {name}{' '}
           <RouterConsumer>
             {({ setView, VIEW_TYPES }) => (
               <button
                 onClick={() =>
-                  setView(VIEW_TYPES.PROFESSIONAL_SALES, {
-                    professionalId: id
-                  })
+                  setView(VIEW_TYPES.PROFESSIONAL_SALES, { professionalId: id })
                 }
               >
                 Ver vendas
