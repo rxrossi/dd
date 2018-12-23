@@ -2,35 +2,10 @@ import React from 'react'
 import db from '../../models'
 import createCrud from '../createCrud'
 import Form from './Form'
-import { RouterConsumer } from '../../Router'
+import List from './List'
 
-const List = ({ entities, onDeleteClick, onUpdateClick }) => {
-  return (
-    <ul>
-      {entities.map(({ id, name }) => (
-        <li key={id}>
-          {name}{' '}
-          <RouterConsumer>
-            {({ setView, VIEW_TYPES }) => (
-              <button
-                onClick={() =>
-                  setView(VIEW_TYPES.PROFESSIONAL_SALES, { professionalId: id })
-                }
-              >
-                Ver vendas
-              </button>
-            )}
-          </RouterConsumer>
-          <button onClick={() => onUpdateClick({ id, name })}>Editar</button>
-          <button onClick={() => onDeleteClick({ id, name })}>Excluir</button>
-        </li>
-      ))}
-    </ul>
-  )
-}
-
-const Create = ({ add }) => {
-  return <Form onSubmit={add} />
+const Create = ({ add, onCancel }) => {
+  return <Form onSubmit={add} onCancel={onCancel} />
 }
 
 const Update = ({ update, entity, onCancel }) => {

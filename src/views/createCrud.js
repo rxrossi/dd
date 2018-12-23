@@ -1,4 +1,5 @@
 import React from 'react'
+import { Button, Flex } from 'reakit'
 
 const VIEW_TYPES = {
   CREATE: 'CREATE',
@@ -129,7 +130,12 @@ export default ({
       } = this.state
 
       const views = {
-        [VIEW_TYPES.CREATE]: <Create add={this.addEntity} />,
+        [VIEW_TYPES.CREATE]: (
+          <Create
+            add={this.addEntity}
+            onCancel={() => this.setView(VIEW_TYPES.LIST)}
+          />
+        ),
         [VIEW_TYPES.LIST]: (
           <List
             entities={entities}
@@ -169,20 +175,20 @@ export default ({
 
       return (
         <div>
-          <div>
-            <button
+          <Flex>
+            <Button
               disabled={view === VIEW_TYPES.CREATE}
               onClick={() => this.setView(VIEW_TYPES.CREATE)}
             >
               Novo
-            </button>
-            <button
+            </Button>
+            <Button
               disabled={view === VIEW_TYPES.LIST}
               onClick={() => this.setView(VIEW_TYPES.LIST)}
             >
               Listar
-            </button>
-          </div>
+            </Button>
+          </Flex>
           {views[view]}
         </div>
       )

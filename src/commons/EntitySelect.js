@@ -1,5 +1,6 @@
 import React from 'react'
-import { Field } from 'react-final-form'
+import { Field as FinalFormField } from 'react-final-form'
+import { Field as ReakitField, Label, Input } from 'reakit'
 import db from '../models'
 
 class EntitySelect extends React.Component {
@@ -16,17 +17,21 @@ class EntitySelect extends React.Component {
   render() {
     const { entities } = this.state
     return (
-      <div>
-        <label>Professional</label>
-        <Field name={this.props.name} component="select">
-          <option>--</option>
-          {entities.map(entity => (
-            <option key={entity.id} value={entity.id}>
-              {entity.name}
-            </option>
-          ))}
-        </Field>
-      </div>
+      <ReakitField>
+        <Label>Professional</Label>
+        <FinalFormField name={this.props.name}>
+          {({ input }) => (
+            <Input as="select" {...input}>
+              <option>--</option>
+              {entities.map(entity => (
+                <option key={entity.id} value={entity.id}>
+                  {entity.name}
+                </option>
+              ))}
+            </Input>
+          )}
+        </FinalFormField>
+      </ReakitField>
     )
   }
 }

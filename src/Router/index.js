@@ -1,4 +1,5 @@
 import React, { createContext, Component, Fragment } from 'react'
+import { Divider, Button, Heading } from 'reakit'
 
 const RouterContext = createContext()
 
@@ -50,17 +51,17 @@ class Router extends Component {
         <Fragment>
           {buttons.map(([VIEW_TYPE, { label }]) =>
             label ? (
-              <button
+              <Button
                 key={label}
                 onClick={() => this.setView(VIEW_TYPE)}
                 disabled={VIEW_TYPE === this.state.view}
               >
                 {label}
-              </button>
+              </Button>
             ) : null
           )}
-          <hr />
-          {label ? <h1>{label} </h1> : null}
+          <Divider />
+          {label ? <Heading>{label} </Heading> : null}
           <View {...this.state.params} />
         </Fragment>
       </RouterContext.Provider>

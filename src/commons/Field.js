@@ -1,12 +1,17 @@
 import React from 'react'
 import { Field as FinalFormField } from 'react-final-form'
+import { Field as ReakitField, Label, Input } from 'reakit'
 
-function Field({ label, ...rest }) {
+function Field({ label, type, ...rest }) {
   return (
-    <div>
-      <label>{label}</label>
-      <FinalFormField component="input" {...rest} />
-    </div>
+    <ReakitField>
+      <Label>{label}</Label>
+      <FinalFormField {...rest}>
+        {({ input }) => {
+          return <Input {...input} type={type} />
+        }}
+      </FinalFormField>
+    </ReakitField>
   )
 }
 

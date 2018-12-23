@@ -1,4 +1,5 @@
 import React from 'react'
+import { Input, Field, Label, Table, Heading, Paragraph, Card } from 'reakit'
 import db from '../../models'
 
 function processEntity(entity) {
@@ -65,21 +66,36 @@ class Sales extends React.Component {
     const { totalValue, commission, professional } = this.state
     return professional ? (
       <div>
-        <h2>{professional.name}</h2>
-        Total: {totalValue} <br />
-        Comissão: {commission}
-        <hr />
-        <input
-          type="month"
-          onChange={this.onMonthSelect}
-          name="month"
-          defaultValue={getYearAndMonthStr(new Date())}
-        />
-        {professional.sales.map(entity => (
-          <div key={entity.id}>
-            Serviço: {entity.name} Value: {entity.value}
-          </div>
-        ))}
+        <Card>
+          <Heading>{professional.name}</Heading>
+          <Paragraph>Total: {totalValue}</Paragraph>
+          <Paragraph>Comissão: {commission}</Paragraph>
+        </Card>
+        <Field>
+          <Label>Selecionar mês</Label>
+          <Input
+            type="month"
+            onChange={this.onMonthSelect}
+            name="month"
+            defaultValue={getYearAndMonthStr(new Date())}
+          />
+        </Field>
+        <Table>
+          <thead>
+            <tr>
+              <th>Serviço</th>
+              <th>Valor</th>
+            </tr>
+          </thead>
+          <tbody>
+            {professional.sales.map(entity => (
+              <tr key={entity.id}>
+                <td>{entity.name}</td>
+                <td align="right">{entity.value}</td>
+              </tr>
+            ))}
+          </tbody>
+        </Table>
       </div>
     ) : null
   }
