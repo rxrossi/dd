@@ -2,24 +2,8 @@ import React from 'react'
 import db from '../../models'
 import createCrud from '../createCrud'
 import Form from './Form'
-
-const List = ({ entities, onDeleteClick, onUpdateClick }) => {
-  return (
-    <ul>
-      {entities.map(({ id, value, name = '', professional }) => (
-        <li key={id}>
-          {name} {professional && professional.name} {value}{' '}
-          <button onClick={() => onUpdateClick({ id, name })}>Editar</button>
-          <button
-            onClick={() => onDeleteClick({ id, name: `${name} ${value}` })}
-          >
-            Excluir
-          </button>
-        </li>
-      ))}
-    </ul>
-  )
-}
+import { VIEW_TYPES } from '../../constants'
+import List from './List'
 
 function parseOutput({ professional, ...rest }) {
   return {
@@ -54,6 +38,7 @@ export default createCrud({
   List,
   Create,
   Update,
+  initialView: VIEW_TYPES.CREATE,
   model: db.Sale,
   includes: {
     include: db.Professional,

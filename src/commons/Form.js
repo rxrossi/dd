@@ -1,13 +1,13 @@
 import React from 'react'
-import { theme, palette } from 'styled-tools'
+import { theme } from 'styled-tools'
 import { Form as FinalForm } from 'react-final-form'
 import { styled, Block as BaseBlock } from 'reakit'
 import CommonButtons from './CommonFormButtons'
 
 const Block = styled(BaseBlock)`
-  background: ${palette('background', 2)};
   padding: ${theme('spacing', 1)};
   margin: ${theme('spacing', 1)};
+  width: 100%;
 `
 
 function Form({

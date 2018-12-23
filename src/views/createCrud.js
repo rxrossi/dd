@@ -1,19 +1,25 @@
 import React from 'react'
-import { Button, Flex } from 'reakit'
+import { styled, Block, Button, Paragraph, Flex } from 'reakit'
+import { VIEW_TYPES } from '../constants'
 
-const VIEW_TYPES = {
-  CREATE: 'CREATE',
-  UPDATE: 'UPDATE',
-  LIST: 'LIST',
-  DELETE: 'DELETE',
-}
+const Container = styled(Block)`
+  background: #fff;
+`
 
 const DefaultDelete = ({ selectedEntityName, onConfirm, onCancel }) => (
-  <div>
-    Deseja remover {selectedEntityName} ?
-    <button onClick={onConfirm}>Remover</button>
-    <button onClick={onCancel}>Cancelar</button>
-  </div>
+  <Block padding="1.5rem">
+    <Flex justifyContent="center" margin="1.5rem">
+      <Paragraph>
+        Deseja remover <b>{selectedEntityName}</b> ?
+      </Paragraph>
+    </Flex>
+    <Flex justifyContent="center">
+      <Button onClick={onConfirm} palette="danger">
+        Remover
+      </Button>
+      <Button onClick={onCancel}>Cancelar</Button>
+    </Flex>
+  </Block>
 )
 
 export default ({
@@ -22,13 +28,14 @@ export default ({
   Update,
   Delete = DefaultDelete,
   model,
+  initialView = VIEW_TYPES.LIST,
   includes = {},
 }) => {
   return class withCrud extends React.Component {
     state = {
       entities: [],
       loading: true,
-      view: VIEW_TYPES.LIST,
+      view: initialView,
       selectedId: null,
     }
 
@@ -140,6 +147,11 @@ export default ({
           <List
             entities={entities}
             loading={loading}
+            createNewView={() =>
+              this.setState({
+                view: VIEW_TYPES.CREATE,
+              })
+            }
             onDeleteClick={({ id, name }) =>
               this.setState({
                 view: VIEW_TYPES.DELETE,
@@ -175,21 +187,7 @@ export default ({
 
       return (
         <div>
-          <Flex>
-            <Button
-              disabled={view === VIEW_TYPES.CREATE}
-              onClick={() => this.setView(VIEW_TYPES.CREATE)}
-            >
-              Novo
-            </Button>
-            <Button
-              disabled={view === VIEW_TYPES.LIST}
-              onClick={() => this.setView(VIEW_TYPES.LIST)}
-            >
-              Listar
-            </Button>
-          </Flex>
-          {views[view]}
+          <Container>{views[view]}</Container>
         </div>
       )
     }

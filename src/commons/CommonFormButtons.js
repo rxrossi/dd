@@ -21,7 +21,7 @@ function CommonFormButtons({ submitting, pristine, form, onCancel }) {
         Resetar
       </Button>
       {onCancel ? (
-        <Button onClick={onCancel} type="Button" palette="secondary">
+        <Button onClick={onCancel} type="Button" palette="danger">
           Cancelar
         </Button>
       ) : null}

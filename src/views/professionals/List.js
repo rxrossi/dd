@@ -29,26 +29,37 @@ function Entity({ entity: { id, name }, onDeleteClick, onUpdateClick }) {
   )
 }
 
-function List({ entities, onDeleteClick, onUpdateClick }) {
+function List({ entities, onDeleteClick, onUpdateClick, createNewView }) {
   return (
-    <Table>
-      <caption>Lista de Profissionais</caption>
-      <thead>
-        <tr>
-          <th>Nome</th>
-          <th />
-        </tr>
-        {entities.map(entity => (
-          <Entity
-            key={entity.id}
-            entity={entity}
-            onDeleteClick={onDeleteClick}
-            onUpdateClick={onUpdateClick}
-          />
-        ))}
-      </thead>
-      <tbody />
-    </Table>
+    <div>
+      <Table>
+        <caption>Lista de Profissionais</caption>
+        <thead>
+          <tr>
+            <th>Nome</th>
+            <th />
+          </tr>
+          {entities.map(entity => (
+            <Entity
+              key={entity.id}
+              entity={entity}
+              onDeleteClick={onDeleteClick}
+              onUpdateClick={onUpdateClick}
+            />
+          ))}
+        </thead>
+        <tbody />
+      </Table>
+      <div
+        style={{
+          display: 'flex',
+          justifyContent: 'flex-end',
+          margin: '0 0.4rem',
+        }}
+      >
+        <Button onClick={createNewView}>Criar Novo</Button>
+      </div>
+    </div>
   )
 }
 

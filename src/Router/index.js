@@ -1,5 +1,15 @@
 import React, { createContext, Component, Fragment } from 'react'
-import { Divider, Button, Heading } from 'reakit'
+import { styled, Block as BaseBlock, Button as BaseButton } from 'reakit'
+import { palette } from 'styled-tools'
+
+const Button = styled(BaseButton)`
+  margin: 0;
+  border-radius: 0;
+`
+
+const Block = styled(BaseBlock)`
+  background: ${palette('primary', 0)};
+`
 
 const RouterContext = createContext()
 
@@ -10,13 +20,13 @@ const VIEW_TYPES = {
 }
 
 const views = {
-  [VIEW_TYPES.PROFESSIONAL_CRUD]: {
-    component: require('../views/Professionals/CRUD').default,
-    label: 'Profissionais',
-  },
   [VIEW_TYPES.SALES_CRUD]: {
     component: require('../views/Sales/CRUD').default,
     label: 'Vendas',
+  },
+  [VIEW_TYPES.PROFESSIONAL_CRUD]: {
+    component: require('../views/Professionals/CRUD').default,
+    label: 'Profissionais',
   },
   [VIEW_TYPES.PROFESSIONAL_SALES]: {
     component: require('../views/Professionals/Sales').default,
@@ -25,7 +35,7 @@ const views = {
 
 class Router extends Component {
   state = {
-    view: VIEW_TYPES.PROFESSIONAL_CRUD,
+    view: VIEW_TYPES.SALES_CRUD,
     params: {},
   }
 
@@ -37,7 +47,7 @@ class Router extends Component {
   }
 
   render() {
-    const { component: View, label } = views[this.state.view]
+    const { component: View } = views[this.state.view]
 
     const buttons = Object.entries(views)
 
@@ -49,19 +59,19 @@ class Router extends Component {
         }}
       >
         <Fragment>
-          {buttons.map(([VIEW_TYPE, { label }]) =>
-            label ? (
-              <Button
-                key={label}
-                onClick={() => this.setView(VIEW_TYPE)}
-                disabled={VIEW_TYPE === this.state.view}
-              >
-                {label}
-              </Button>
-            ) : null
-          )}
-          <Divider />
-          {label ? <Heading>{label} </Heading> : null}
+          <Block>
+            {buttons.map(([VIEW_TYPE, { label }]) =>
+              label ? (
+                <Button
+                  key={label}
+                  onClick={() => this.setView(VIEW_TYPE)}
+                  disabled={VIEW_TYPE === this.state.view}
+                >
+                  {label}
+                </Button>
+              ) : null
+            )}
+          </Block>
           <View {...this.state.params} />
         </Fragment>
       </RouterContext.Provider>
