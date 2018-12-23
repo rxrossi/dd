@@ -1,6 +1,7 @@
 import { DateTime } from 'luxon'
 
-const DateDisplay = ({ date }) =>
-  new DateTime(new Date(date)).toFormat('dd-MM-yyyy')
+const DateDisplay = ({ date }) => {
+  return new DateTime.fromJSDate(new Date(date)).toFormat('dd-MM-yyyy')
+}
 
 export default DateDisplay

@@ -24,7 +24,7 @@ const List = ({ entities, onDeleteClick, onUpdateClick, createNewView }) => {
                 <DateDisplay date={date} />
               </td>
               <td align="right"> {value} </td>
-              <td>
+              <td align="right">
                 <Button
                   palette="secondary"
                   onClick={() => onUpdateClick({ id, name })}

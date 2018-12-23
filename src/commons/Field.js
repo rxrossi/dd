@@ -11,7 +11,9 @@ function Field({ label, type, ...rest }) {
         {...rest}
         format={value => {
           if (type === 'date') {
-            return new DateTime(new Date(value)).toFormat('yyyy-MM-dd')
+            return new DateTime.fromJSDate(new Date(value)).toFormat(
+              'yyyy-MM-dd'
+            )
           }
           return value
         }}
