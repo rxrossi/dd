@@ -21,7 +21,7 @@ function getYearAndMonthStr(date) {
 function getMonthRange(date) {
   const currentDate = new Date(date)
 
-  const nextMonth = new Date()
+  const nextMonth = new Date(date)
   nextMonth.setMonth(currentDate.getMonth() + 1)
 
   return [
