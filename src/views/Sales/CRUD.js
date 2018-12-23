@@ -2,7 +2,6 @@ import React from 'react'
 import db from '../../models'
 import createCrud from '../createCrud'
 import Form from './Form'
-import { VIEW_TYPES } from '../../constants'
 import List from './List'
 
 function parseOutput({ professional, ...rest }) {
@@ -19,8 +18,8 @@ function parseInput({ professionalId, ...rest }) {
   }
 }
 
-const Create = ({ add }) => {
-  return <Form onSubmit={add} parseOutput={parseOutput} />
+const Create = ({ add, onCancel }) => {
+  return <Form onSubmit={add} parseOutput={parseOutput} onCancel={onCancel} />
 }
 
 const Update = ({ update, entity, onCancel }) => {
@@ -38,7 +37,6 @@ export default createCrud({
   List,
   Create,
   Update,
-  initialView: VIEW_TYPES.CREATE,
   model: db.Sale,
   includes: {
     include: db.Professional,

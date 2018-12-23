@@ -33,7 +33,6 @@ function List({ entities, onDeleteClick, onUpdateClick, createNewView }) {
   return (
     <div>
       <Table>
-        <caption>Lista de Profissionais</caption>
         <thead>
           <tr>
             <th>Nome</th>
@@ -57,7 +56,7 @@ function List({ entities, onDeleteClick, onUpdateClick, createNewView }) {
           margin: '0 0.4rem',
         }}
       >
-        <Button onClick={createNewView}>Criar Novo</Button>
+        <Button onClick={createNewView}>Criar novo</Button>
       </div>
     </div>
   )

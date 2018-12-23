@@ -4,7 +4,7 @@ import DateDisplay from '../../commons/DateDisplay'
 
 const List = ({ entities, onDeleteClick, onUpdateClick, createNewView }) => {
   return (
-    <di>
+    <div>
       <Table>
         <thead>
           <tr>
@@ -54,9 +54,9 @@ const List = ({ entities, onDeleteClick, onUpdateClick, createNewView }) => {
           margin: '0 0.4rem',
         }}
       >
-        <Button onClick={createNewView}>Criar Novo</Button>
+        <Button onClick={createNewView}>Criar nova</Button>
       </div>
-    </di>
+    </div>
   )
 }
 
