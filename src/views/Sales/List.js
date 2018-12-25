@@ -3,6 +3,18 @@ import { Table, Button } from 'reakit'
 import DateDisplay from '../../commons/DateDisplay'
 import FiltersForm from './FiltersForm'
 
+function getTotal(entities) {
+  return entities.reduce((acc, curr) => {
+    return acc + curr.value
+  }, 0)
+}
+
+function getTotalComission(entities) {
+  return entities.reduce((acc, curr) => {
+    return acc + (curr.value / 100) * curr.professional.percentage
+  }, 0)
+}
+
 const List = ({
   entities,
   onDeleteClick,
@@ -48,6 +60,28 @@ const List = ({
             </tr>
           ))}
         </tbody>
+        <tfoot>
+          <tr>
+            <td colSpan={4} />
+            <td>
+              <Table width="100%" margin={0}>
+                <thead>
+                  <tr>
+                    <th>Total</th>
+                    <th>Comissão</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td align="right">{getTotal(entities)}</td>
+                    <td align="right">{getTotalComission(entities)}</td>
+                  </tr>
+                </tbody>
+              </Table>
+            </td>
+            <td />
+          </tr>
+        </tfoot>
       </Table>
       <div
         style={{
