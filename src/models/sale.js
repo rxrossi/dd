@@ -3,6 +3,7 @@ export default (sequelize, DataTypes) => {
     value: DataTypes.INTEGER,
     name: DataTypes.STRING,
     date: DataTypes.DATE,
+    notes: DataTypes.TEXT,
   })
 
   Sale.associate = models => {
