@@ -75,7 +75,7 @@ export default ({
             where: {
               id: entity.id,
             },
-            ...include,
+            include,
           })
         )
         .then(entity => {

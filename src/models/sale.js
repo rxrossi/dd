@@ -7,6 +7,7 @@ export default (sequelize, DataTypes) => {
 
   Sale.associate = models => {
     Sale.belongsTo(models.Professional)
+    Sale.belongsTo(models.Client)
   }
 
   return Sale

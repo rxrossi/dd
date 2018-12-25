@@ -17,10 +17,11 @@ const List = ({
           <FiltersForm setWhereFilters={setWhereFilters} />
         </thead>
         <tbody>
-          {entities.map(({ id, value, name = '', professional, date }) => (
+          {entities.map(({ id, value, name, professional, date, client }) => (
             <tr key={id}>
               <td>{name}</td>
               <td>{professional.name}</td>
+              <td>{client.name}</td>
               <td align="right">
                 <DateDisplay date={date} />
               </td>

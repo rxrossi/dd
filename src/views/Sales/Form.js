@@ -6,7 +6,12 @@ import Field from '../../commons/Field'
 const SalesForm = props => {
   return (
     <Form {...props}>
-      <EntitySelect name="professional" entityName="Professional" />
+      <EntitySelect
+        label="Profissional"
+        name="professional"
+        entityName="Professional"
+      />
+      <EntitySelect label="Cliente" name="client" entityName="Client" />
       <Field type="number" label="Valor" name="value" />
       <Field type="date" label="Data" name="date" />
       <Field type="text" label="Nome do serviço" name="name" />

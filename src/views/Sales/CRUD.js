@@ -4,17 +4,19 @@ import createCrud from '../createCrud'
 import Form from './Form'
 import List from './List'
 
-function parseOutput({ professional, ...rest }) {
+function parseOutput({ professional, client, ...rest }) {
   return {
     ...rest,
     professionalId: Number(professional),
+    clientId: Number(client),
   }
 }
 
-function parseInput({ professionalId, ...rest }) {
+function parseInput({ professionalId, clientId, ...rest }) {
   return {
     ...rest,
     professional: professionalId,
+    client: clientId,
   }
 }
 
@@ -38,5 +40,5 @@ export default createCrud({
   Create,
   Update,
   model: db.Sale,
-  include: db.Professional,
+  include: [db.Professional, db.Client],
 })

@@ -15,6 +15,7 @@ const RouterContext = createContext()
 
 const VIEW_TYPES = {
   PROFESSIONAL_CRUD: 'PROFESSIONAL_CRUD',
+  CLIENTS_CRUD: 'CLIENTS_CRUD',
   SALES_CRUD: 'SALES_CRUD',
 }
 
@@ -26,6 +27,10 @@ const views = {
   [VIEW_TYPES.PROFESSIONAL_CRUD]: {
     component: require('../views/Professionals/CRUD').default,
     label: 'Profissionais',
+  },
+  [VIEW_TYPES.CLIENTS_CRUD]: {
+    component: require('../views/Clients/CRUD').default,
+    label: 'Clientes',
   },
 }
 

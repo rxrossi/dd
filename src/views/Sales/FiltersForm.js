@@ -44,13 +44,20 @@ class FiltersForm extends React.Component {
                 />
               </th>
               <th>
+                <EntitySelect
+                  label="Cliente"
+                  name="client"
+                  entityName="Client"
+                />
+              </th>
+              <th>
                 <Field label="Data" name="month" type="month" />
               </th>
               <th> Valor </th>
               <th />
 
               <FormSpy
-                onChange={({ values: { month, professional } }) => {
+                onChange={({ values: { month, professional, client } }) => {
                   const where = {}
                   if (month) {
                     where.date = {
@@ -61,6 +68,12 @@ class FiltersForm extends React.Component {
                   if (professional) {
                     where.professionalId = {
                       [db.Sequelize.Op.eq]: professional,
+                    }
+                  }
+
+                  if (client) {
+                    where.clientId = {
+                      [db.Sequelize.Op.eq]: client,
                     }
                   }
 
