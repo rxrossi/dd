@@ -38,7 +38,5 @@ export default createCrud({
   Create,
   Update,
   model: db.Sale,
-  includes: {
-    include: db.Professional,
-  },
+  include: db.Professional,
 })

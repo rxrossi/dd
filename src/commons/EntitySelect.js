@@ -18,11 +18,11 @@ class EntitySelect extends React.Component {
     const { entities } = this.state
     return (
       <ReakitField>
-        <Label>Professional</Label>
+        <Label>{this.props.label}</Label>
         <FinalFormField name={this.props.name}>
           {({ input }) => (
             <Input as="select" {...input}>
-              <option>--</option>
+              <option value={null} />
               {entities.map(entity => (
                 <option key={entity.id} value={entity.id}>
                   {entity.name}

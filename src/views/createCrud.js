@@ -29,7 +29,7 @@ export default ({
   Delete = DefaultDelete,
   model,
   initialView = VIEW_TYPES.LIST,
-  includes = {},
+  include,
 }) => {
   return class withCrud extends React.Component {
     state = {
@@ -37,15 +37,34 @@ export default ({
       loading: true,
       view: initialView,
       selectedId: null,
+      where: {},
     }
 
     componentDidMount() {
-      model.findAll(includes).then(entities =>
-        this.setState({
-          entities,
-          loading: false,
-        })
+      // this.getEntities()
+    }
+
+    setWhereFilters = where => {
+      this.setState(
+        {
+          where,
+        },
+        this.getEntities
       )
+    }
+
+    getEntities = () => {
+      model
+        .findAll({
+          include,
+          where: this.state.where,
+        })
+        .then(entities =>
+          this.setState({
+            entities,
+            loading: false,
+          })
+        )
     }
 
     addEntity = entity => {
@@ -56,7 +75,7 @@ export default ({
             where: {
               id: entity.id,
             },
-            ...includes,
+            ...include,
           })
         )
         .then(entity => {
@@ -105,7 +124,7 @@ export default ({
             where: {
               id: entity.id,
             },
-            ...includes,
+            ...include,
           })
         )
         .then(updatedEntity => {
@@ -147,6 +166,7 @@ export default ({
           <List
             entities={entities}
             loading={loading}
+            setWhereFilters={this.setWhereFilters}
             createNewView={() =>
               this.setState({
                 view: VIEW_TYPES.CREATE,

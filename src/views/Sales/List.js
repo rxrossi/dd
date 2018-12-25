@@ -1,19 +1,20 @@
 import React from 'react'
 import { Table, Button } from 'reakit'
 import DateDisplay from '../../commons/DateDisplay'
+import FiltersForm from './FiltersForm'
 
-const List = ({ entities, onDeleteClick, onUpdateClick, createNewView }) => {
+const List = ({
+  entities,
+  onDeleteClick,
+  onUpdateClick,
+  createNewView,
+  setWhereFilters,
+}) => {
   return (
     <div>
       <Table>
         <thead>
-          <tr>
-            <th> Serviço </th>
-            <th> Profissional </th>
-            <th> Data </th>
-            <th> Valor </th>
-            <th />
-          </tr>
+          <FiltersForm setWhereFilters={setWhereFilters} />
         </thead>
         <tbody>
           {entities.map(({ id, value, name = '', professional, date }) => (
