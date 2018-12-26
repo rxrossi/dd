@@ -1,10 +1,11 @@
 import React from 'react'
 import { Table, Button } from 'reakit'
 
-function Entity({ entity: { id, name }, onDeleteClick, onUpdateClick }) {
+function Entity({ entity: { id, name, value }, onDeleteClick, onUpdateClick }) {
   return (
     <tr>
       <td>{name}</td>
+      <td align="right">{value}</td>
       <td align="right">
         <Button palette="secondary" onClick={() => onUpdateClick({ id, name })}>
           Editar
@@ -30,6 +31,7 @@ class List extends React.Component {
           <thead>
             <tr>
               <th>Nome</th>
+              <th>Valor</th>
               <th />
             </tr>
             {entities.map(entity => (
