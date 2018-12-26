@@ -12,7 +12,13 @@
     "test": "jest",
     "makemigration": "makemigration",
     "runmigration": "runmigration",
-    "lint": "eslint './src/**/*.js' --ignore-path .gitignore --fix"
+    "lint": "eslint './src/**/*.js' --ignore-path .gitignore --fix",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder"
+  },
+  "build": {
+    "appId": "com.dd.manager",
+    "productName": "DD App"
   },
   "keywords": [],
   "author": "",
@@ -33,7 +39,7 @@
     "concurrently": "^4.0.1",
     "css-loader": "^1.0.1",
     "electron": "^3.0.5",
-    "electron-builder": "^20.38.3",
+    "electron-builder": "^20.38.4",
     "enzyme": "^3.7.0",
     "enzyme-adapter-react-16": "^1.6.0",
     "eslint": "^5.10.0",
