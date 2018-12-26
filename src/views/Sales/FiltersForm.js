@@ -35,7 +35,13 @@ class FiltersForm extends React.Component {
         {() => {
           return (
             <tr>
-              <th> Serviço </th>
+              <th>
+                <EntitySelect
+                  label="Serviço"
+                  name="service"
+                  entityName="Service"
+                />
+              </th>
               <th>
                 <EntitySelect
                   label="Profissional"
@@ -57,11 +63,19 @@ class FiltersForm extends React.Component {
               <th />
 
               <FormSpy
-                onChange={({ values: { month, professional, client } }) => {
+                onChange={({
+                  values: { month, professional, client, service },
+                }) => {
                   const where = {}
                   if (month) {
                     where.date = {
                       [db.Sequelize.Op.between]: getMonthRange(new Date(month)),
+                    }
+                  }
+
+                  if (service) {
+                    where.serviceId = {
+                      [db.Sequelize.Op.eq]: service,
                     }
                   }
 

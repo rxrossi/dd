@@ -5,24 +5,35 @@ import Form from './Form'
 import List from './List'
 import { VIEW_TYPES } from '../../constants'
 
-function parseOutput({ professional, client, ...rest }) {
+function parseOutput({ professional, client, service, ...rest }) {
   return {
     ...rest,
     professionalId: Number(professional),
     clientId: Number(client),
+    serviceId: Number(service),
   }
 }
 
-function parseInput({ professionalId, clientId, ...rest }) {
+function parseInput({ professionalId, clientId, serviceId, ...rest }) {
   return {
     ...rest,
     professional: professionalId,
     client: clientId,
+    service: serviceId,
   }
 }
 
 const Create = ({ add, onCancel }) => {
-  return <Form onSubmit={add} parseOutput={parseOutput} onCancel={onCancel} />
+  return (
+    <Form
+      onSubmit={add}
+      entity={{
+        date: new Date(),
+      }}
+      parseOutput={parseOutput}
+      onCancel={onCancel}
+    />
+  )
 }
 
 const Update = ({ update, entity, onCancel }) => {
@@ -42,5 +53,5 @@ export default createCrud({
   Update,
   defaultView: VIEW_TYPES.CREATE,
   model: db.Sale,
-  include: [db.Professional, db.Client],
+  include: [db.Professional, db.Client, db.Service],
 })

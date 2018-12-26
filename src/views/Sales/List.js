@@ -29,36 +29,38 @@ const List = ({
           <FiltersForm setWhereFilters={setWhereFilters} />
         </thead>
         <tbody>
-          {entities.map(({ id, value, name, professional, date, client }) => (
-            <tr key={id}>
-              <td>{name}</td>
-              <td>{professional.name}</td>
-              <td>{client.name}</td>
-              <td align="right">
-                <DateDisplay date={date} />
-              </td>
-              <td align="right"> {value} </td>
-              <td align="right">
-                <Button
-                  palette="secondary"
-                  onClick={() => onUpdateClick({ id, name })}
-                >
-                  Editar
-                </Button>
-                <Button
-                  palette="danger"
-                  onClick={() =>
-                    onDeleteClick({
-                      id,
-                      name: `${name} por ${professional.name}`,
-                    })
-                  }
-                >
-                  Excluir
-                </Button>
-              </td>
-            </tr>
-          ))}
+          {entities.map(
+            ({ id, value, name, professional, date, client, service }) => (
+              <tr key={id}>
+                <td>{service.name}</td>
+                <td>{professional.name}</td>
+                <td>{client.name}</td>
+                <td align="right">
+                  <DateDisplay date={date} />
+                </td>
+                <td align="right"> {value} </td>
+                <td align="right">
+                  <Button
+                    palette="secondary"
+                    onClick={() => onUpdateClick({ id, name })}
+                  >
+                    Editar
+                  </Button>
+                  <Button
+                    palette="danger"
+                    onClick={() =>
+                      onDeleteClick({
+                        id,
+                        name: `${name} por ${professional.name}`,
+                      })
+                    }
+                  >
+                    Excluir
+                  </Button>
+                </td>
+              </tr>
+            )
+          )}
         </tbody>
         <tfoot>
           <tr>
