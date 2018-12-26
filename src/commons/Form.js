@@ -21,8 +21,9 @@ function Form({
   return (
     <Block>
       <FinalForm
-        onSubmit={values => {
+        onSubmit={(values, form) => {
           onSubmit(parseOutput(values))
+          form.reset()
         }}
         initialValues={parseInput(entity)}
         render={({ handleSubmit, form, submitting, pristine }) => (

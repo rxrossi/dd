@@ -3,6 +3,7 @@ import db from '../../models'
 import createCrud from '../createCrud'
 import Form from './Form'
 import List from './List'
+import { VIEW_TYPES } from '../../constants'
 
 function parseOutput({ professional, client, ...rest }) {
   return {
@@ -39,6 +40,7 @@ export default createCrud({
   List,
   Create,
   Update,
+  defaultView: VIEW_TYPES.CREATE,
   model: db.Sale,
   include: [db.Professional, db.Client],
 })

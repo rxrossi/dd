@@ -28,14 +28,14 @@ export default ({
   Update,
   Delete = DefaultDelete,
   model,
-  initialView = VIEW_TYPES.LIST,
+  defaultView = VIEW_TYPES.LIST,
   include,
 }) => {
   return class withCrud extends React.Component {
     state = {
       entities: [],
       loading: true,
-      view: initialView,
+      view: defaultView,
       selectedId: null,
       where: {},
     }
@@ -81,7 +81,7 @@ export default ({
         .then(entity => {
           this.setState(state => ({
             entities: [...state.entities, entity],
-            view: VIEW_TYPES.LIST,
+            view: defaultView,
             selectedId: null,
             selectedEntityName: null,
           }))
@@ -103,7 +103,7 @@ export default ({
             )
             return {
               entities: filteredEntities,
-              view: VIEW_TYPES.LIST,
+              view: defaultView,
               selectedId: null,
               selectedEntityName: null,
             }
@@ -134,7 +134,7 @@ export default ({
             })
             return {
               entities: updateEntitiesList,
-              view: VIEW_TYPES.LIST,
+              view: defaultView,
               selectedId: null,
               selectedEntityName: null,
             }
