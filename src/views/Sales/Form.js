@@ -7,7 +7,12 @@ import Textarea from '../../commons/Textarea'
 
 const SalesForm = props => {
   return (
-    <Form {...props}>
+    <Form
+      {...props}
+      entity={{
+        date: new Date(),
+      }}
+    >
       <EntitySelect
         label="Profissional"
         name="professional"
