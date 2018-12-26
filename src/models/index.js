@@ -17,6 +17,7 @@ const db = {
   Professional: setupImport(require('./professional')),
   Sale: setupImport(require('./sale')),
   Client: setupImport(require('./client')),
+  Service: setupImport(require('./service')),
 }
 
 Object.keys(db).forEach(modelName => {

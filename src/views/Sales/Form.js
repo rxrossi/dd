@@ -1,4 +1,5 @@
 import React from 'react'
+import { FormSpy } from 'react-final-form'
 import Form from '../../commons/Form'
 import EntitySelect from '../../commons/EntitySelect'
 import Field from '../../commons/Field'
@@ -14,7 +15,24 @@ const SalesForm = props => {
       />
       <EntitySelect label="Cliente" name="client" entityName="Client" />
       <Field type="date" label="Data" name="date" />
-      <Field type="text" label="Nome do serviço" name="name" />
+      <FormSpy subscription="service">
+        {({ form }) => {
+          return (
+            <EntitySelect
+              label="Serviço"
+              name="service"
+              entityName="Service"
+              onChange={entity => {
+                if (entity) {
+                  form.change('value', Number(entity.value))
+                } else {
+                  form.change('value', null)
+                }
+              }}
+            />
+          )
+        }}
+      </FormSpy>
       <Field type="number" label="Valor" name="value" />
       <Textarea label="Observações" name="notes" />
     </Form>

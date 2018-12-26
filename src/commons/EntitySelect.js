@@ -20,16 +20,24 @@ class EntitySelect extends React.Component {
       <ReakitField>
         <Label>{this.props.label}</Label>
         <FinalFormField name={this.props.name}>
-          {({ input }) => (
-            <Input as="select" {...input}>
-              <option value={null} />
-              {entities.map(entity => (
-                <option key={entity.id} value={entity.id}>
-                  {entity.name}
-                </option>
-              ))}
-            </Input>
-          )}
+          {({ input }) => {
+            if (this.props.onChange) {
+              const entity = entities.find(entity => {
+                return entity.id === Number(input.value)
+              })
+              this.props.onChange(entity)
+            }
+            return (
+              <Input as="select" {...input}>
+                <option value={null} />
+                {entities.map(entity => (
+                  <option key={entity.id} value={entity.id}>
+                    {entity.name}
+                  </option>
+                ))}
+              </Input>
+            )
+          }}
         </FinalFormField>
       </ReakitField>
     )
